@@ -35,7 +35,7 @@ SYSTEM.load = () => {
     SYSTEM.isWebGLSupported = ctx != null;
     SYSTEM.isTouchEnabled = isTouchEnabled();
     SYSTEM.maxTextureWidth = getMaxTextureWidth(ctx);
-    SYSTEM.maxCanvasWidth = getMaxCanvasWidth(4096);
+    SYSTEM.maxCanvasWidth = 8192;
     SYSTEM.mouseWheelEvent = getMouseWheelEvent();
     SYSTEM.fullscreenEvent = getFullscreenEvent();
   }
