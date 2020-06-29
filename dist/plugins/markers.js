@@ -710,7 +710,7 @@
     return Marker;
   }();
 
-  var pin = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"10 9 81 81\"><path d=\"M50.5 90S22.9 51.9 22.9 36.6 35.2 9 50.5 9s27.6 12.4 27.6 27.6S50.5 90 50.5 90zm0-66.3c-6.1 0-11 4.9-11 11s4.9 11 11 11 11-4.9 11-11-4.9-11-11-11z\"/><!--Created by Rohith M S from the Noun Project--></svg>\n";
+  var pin = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"10 9 81 81\"><path d=\"M50.5 90S22.9 51.9 22.9 36.6 35.2 9 50.5 9s27.6 12.4 27.6 27.6S50.5 90 50.5 90zm0-66.3c-6.1 0-11 4.9-11 11s4.9 11 11 11 11-4.9 11-11-4.9-11-11-11z\"/><!--Created by Rohith M S from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Navigation bar markers button class
@@ -809,7 +809,7 @@
   MarkersButton.id = 'markers';
   MarkersButton.icon = pin;
 
-  var icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"9 9 81 81\"><path fill=\"currentColor\" d=\"M37.5 90S9.9 51.9 9.9 36.6 22.2 9 37.5 9s27.6 12.4 27.6 27.6S37.5 90 37.5 90zm0-66.3c-6.1 0-11 4.9-11 11s4.9 11 11 11 11-4.9 11-11-4.9-11-11-11zM86.7 55H70c-1.8 0-3.3-1.5-3.3-3.3s1.5-3.3 3.3-3.3h16.7c1.8 0 3.3 1.5 3.3 3.3S88.5 55 86.7 55zm0-25h-15a3.3 3.3 0 0 1-3.3-3.3c0-1.8 1.5-3.3 3.3-3.3h15c1.8 0 3.3 1.5 3.3 3.3 0 1.8-1.5 3.3-3.3 3.3zM56.5 73h30c1.8 0 3.3 1.5 3.3 3.3 0 1.8-1.5 3.3-3.3 3.3h-30a3.3 3.3 0 0 1-3.3-3.3 3.2 3.2 0 0 1 3.3-3.3z\"/><!--Created by Rohith M S from the Noun Project--></svg>\n";
+  var icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"9 9 81 81\"><path fill=\"currentColor\" d=\"M37.5 90S9.9 51.9 9.9 36.6 22.2 9 37.5 9s27.6 12.4 27.6 27.6S37.5 90 37.5 90zm0-66.3c-6.1 0-11 4.9-11 11s4.9 11 11 11 11-4.9 11-11-4.9-11-11-11zM86.7 55H70c-1.8 0-3.3-1.5-3.3-3.3s1.5-3.3 3.3-3.3h16.7c1.8 0 3.3 1.5 3.3 3.3S88.5 55 86.7 55zm0-25h-15a3.3 3.3 0 0 1-3.3-3.3c0-1.8 1.5-3.3 3.3-3.3h15c1.8 0 3.3 1.5 3.3 3.3 0 1.8-1.5 3.3-3.3 3.3zM56.5 73h30c1.8 0 3.3 1.5 3.3 3.3 0 1.8-1.5 3.3-3.3 3.3h-30a3.3 3.3 0 0 1-3.3-3.3 3.2 3.2 0 0 1 3.3-3.3z\"/><!--Created by Rohith M S from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Navigation bar markers list button class
@@ -1382,7 +1382,7 @@
       var _this4 = this;
 
       var marker = this.getMarker(markerId);
-      return this.psv.animate(_extends({}, marker.props.position, {
+      return this.psv.animate(_extends(_extends({}, marker.props.position), {}, {
         speed: speed
       })).then(function () {
         /**
