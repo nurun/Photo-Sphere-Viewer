@@ -38,6 +38,14 @@
 
   var LONGTOUCH_DELAY = 500;
   /**
+   * @summary Delay in milliseconds to for the two fingers overlay to appear
+   * @memberOf PSV.constants
+   * @type {number}
+   * @constant
+   */
+
+  var TWOFINGERSOVERLAY_DELAY = 100;
+  /**
    * @summary Time size of the mouse position history used to compute inertia
    * @memberOf PSV.constants
    * @type {number}
@@ -421,6 +429,7 @@
     MOVE_THRESHOLD: MOVE_THRESHOLD,
     DBLCLICK_DELAY: DBLCLICK_DELAY,
     LONGTOUCH_DELAY: LONGTOUCH_DELAY,
+    TWOFINGERSOVERLAY_DELAY: TWOFINGERSOVERLAY_DELAY,
     INERTIA_WINDOW: INERTIA_WINDOW,
     SPHERE_RADIUS: SPHERE_RADIUS,
     SPHERE_VERTICES: SPHERE_VERTICES,
@@ -1728,7 +1737,7 @@
        * @property {number} width
        */
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         id: _this.constructor.id,
         collapsable: collapsable,
         enabled: true,
@@ -1933,9 +1942,9 @@
   AbstractButton.icon = null;
   AbstractButton.iconActive = null;
 
-  var playActive = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 41 41\"><path d=\"M40.5 14.1c-.1-.1-1.2-.5-2.898-1-.102 0-.202-.1-.202-.2C34.5 6.5 28 2 20.5 2S6.6 6.5 3.7 12.9c0 .1-.1.1-.2.2-1.7.6-2.8 1-2.9 1l-.6.3v12.1l.6.2c.1 0 1.1.399 2.7.899.1 0 .2.101.2.199C6.3 34.4 12.9 39 20.5 39c7.602 0 14.102-4.6 16.9-11.1 0-.102.1-.102.199-.2 1.699-.601 2.699-1 2.801-1l.6-.3V14.3l-.5-.2zM6.701 11.5C9.7 7 14.8 4 20.5 4c5.8 0 10.9 3 13.8 7.5.2.3-.1.6-.399.5-3.799-1-8.799-2-13.6-2-4.7 0-9.5 1-13.2 2-.3.1-.5-.2-.4-.5zM25.1 20.3L18.7 24c-.3.2-.7 0-.7-.5v-7.4c0-.4.4-.6.7-.4l6.399 3.8c.301.1.301.6.001.8zm9.4 8.901A16.421 16.421 0 0 1 20.5 37c-5.9 0-11.1-3.1-14-7.898-.2-.302.1-.602.4-.5 3.9 1 8.9 2.1 13.6 2.1 5 0 9.9-1 13.602-2 .298-.1.5.198.398.499z\"/><!--Created by Nick Bluth from the Noun Project--></svg>\n";
+  var playActive = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 41 41\"><path d=\"M40.5 14.1c-.1-.1-1.2-.5-2.898-1-.102 0-.202-.1-.202-.2C34.5 6.5 28 2 20.5 2S6.6 6.5 3.7 12.9c0 .1-.1.1-.2.2-1.7.6-2.8 1-2.9 1l-.6.3v12.1l.6.2c.1 0 1.1.399 2.7.899.1 0 .2.101.2.199C6.3 34.4 12.9 39 20.5 39c7.602 0 14.102-4.6 16.9-11.1 0-.102.1-.102.199-.2 1.699-.601 2.699-1 2.801-1l.6-.3V14.3l-.5-.2zM6.701 11.5C9.7 7 14.8 4 20.5 4c5.8 0 10.9 3 13.8 7.5.2.3-.1.6-.399.5-3.799-1-8.799-2-13.6-2-4.7 0-9.5 1-13.2 2-.3.1-.5-.2-.4-.5zM25.1 20.3L18.7 24c-.3.2-.7 0-.7-.5v-7.4c0-.4.4-.6.7-.4l6.399 3.8c.301.1.301.6.001.8zm9.4 8.901A16.421 16.421 0 0 1 20.5 37c-5.9 0-11.1-3.1-14-7.898-.2-.302.1-.602.4-.5 3.9 1 8.9 2.1 13.6 2.1 5 0 9.9-1 13.602-2 .298-.1.5.198.398.499z\"/><!--Created by Nick Bluth from the Noun Project--></svg>\r\n";
 
-  var play = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 41 41\"><path d=\"M40.5 14.1c-.1-.1-1.2-.5-2.899-1-.101 0-.2-.1-.2-.2C34.5 6.5 28 2 20.5 2S6.6 6.5 3.7 12.9c0 .1-.1.1-.2.2-1.7.6-2.8 1-2.9 1l-.6.3v12.1l.6.2c.1 0 1.1.4 2.7.9.1 0 .2.1.2.199C6.3 34.4 12.9 39 20.5 39c7.601 0 14.101-4.6 16.9-11.1 0-.101.1-.101.2-.2 1.699-.6 2.699-1 2.8-1l.6-.3V14.3l-.5-.2zM20.5 4c5.8 0 10.9 3 13.8 7.5.2.3-.1.6-.399.5-3.8-1-8.8-2-13.6-2-4.7 0-9.5 1-13.2 2-.3.1-.5-.2-.4-.5C9.7 7 14.8 4 20.5 4zm0 33c-5.9 0-11.1-3.1-14-7.899-.2-.301.1-.601.4-.5 3.9 1 8.9 2.1 13.6 2.1 5 0 9.9-1 13.601-2 .3-.1.5.2.399.5A16.422 16.422 0 0 1 20.5 37zm18.601-12.1c0 .1-.101.3-.2.3-2.5.9-10.4 3.6-18.4 3.6-7.1 0-15.6-2.699-18.3-3.6C2.1 25.2 2 25 2 24.9V16c0-.1.1-.3.2-.3 2.6-.9 10.6-3.6 18.2-3.6 7.5 0 15.899 2.7 18.5 3.6.1 0 .2.2.2.3v8.9z\"/><path d=\"M18.7 24l6.4-3.7c.3-.2.3-.7 0-.8l-6.4-3.8c-.3-.2-.7 0-.7.4v7.4c0 .5.4.7.7.5z\"/><!--Created by Nick Bluth from the Noun Project--></svg>\n";
+  var play = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 41 41\"><path d=\"M40.5 14.1c-.1-.1-1.2-.5-2.899-1-.101 0-.2-.1-.2-.2C34.5 6.5 28 2 20.5 2S6.6 6.5 3.7 12.9c0 .1-.1.1-.2.2-1.7.6-2.8 1-2.9 1l-.6.3v12.1l.6.2c.1 0 1.1.4 2.7.9.1 0 .2.1.2.199C6.3 34.4 12.9 39 20.5 39c7.601 0 14.101-4.6 16.9-11.1 0-.101.1-.101.2-.2 1.699-.6 2.699-1 2.8-1l.6-.3V14.3l-.5-.2zM20.5 4c5.8 0 10.9 3 13.8 7.5.2.3-.1.6-.399.5-3.8-1-8.8-2-13.6-2-4.7 0-9.5 1-13.2 2-.3.1-.5-.2-.4-.5C9.7 7 14.8 4 20.5 4zm0 33c-5.9 0-11.1-3.1-14-7.899-.2-.301.1-.601.4-.5 3.9 1 8.9 2.1 13.6 2.1 5 0 9.9-1 13.601-2 .3-.1.5.2.399.5A16.422 16.422 0 0 1 20.5 37zm18.601-12.1c0 .1-.101.3-.2.3-2.5.9-10.4 3.6-18.4 3.6-7.1 0-15.6-2.699-18.3-3.6C2.1 25.2 2 25 2 24.9V16c0-.1.1-.3.2-.3 2.6-.9 10.6-3.6 18.2-3.6 7.5 0 15.899 2.7 18.5 3.6.1 0 .2.2.2.3v8.9z\"/><path d=\"M18.7 24l6.4-3.7c.3-.2.3-.7 0-.8l-6.4-3.8c-.3-.2-.7 0-.7.4v7.4c0 .5.4.7.7.5z\"/><!--Created by Nick Bluth from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Navigation bar autorotate button class
@@ -2087,7 +2096,7 @@
     return CustomButton;
   }(AbstractButton);
 
-  var download = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M83.3 35.6h-17V3H32.2v32.6H16.6l33.6 32.7 33-32.7z\"/><path d=\"M83.3 64.2v16.3H16.6V64.2H-.1v32.6H100V64.2H83.3z\"/><!--Created by Michael Zenaty from the Noun Project--></svg>\n";
+  var download = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M83.3 35.6h-17V3H32.2v32.6H16.6l33.6 32.7 33-32.7z\"/><path d=\"M83.3 64.2v16.3H16.6V64.2H-.1v32.6H100V64.2H83.3z\"/><!--Created by Michael Zenaty from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Navigation bar download button class
@@ -2130,9 +2139,9 @@
   DownloadButton.id = 'download';
   DownloadButton.icon = download;
 
-  var fullscreenIn = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M100 40H87.1V18.8h-21V6H100zM100 93.2H66V80.3h21.1v-21H100zM34 93.2H0v-34h12.9v21.1h21zM12.9 40H0V6h34v12.9H12.8z\"/><!--Created by Garrett Knoll from the Noun Project--></svg>\n";
+  var fullscreenIn = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M100 40H87.1V18.8h-21V6H100zM100 93.2H66V80.3h21.1v-21H100zM34 93.2H0v-34h12.9v21.1h21zM12.9 40H0V6h34v12.9H12.8z\"/><!--Created by Garrett Knoll from the Noun Project--></svg>\r\n";
 
-  var fullscreenOut = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M66 7h13v21h21v13H66zM66 60.3h34v12.9H79v21H66zM0 60.3h34v34H21V73.1H0zM21 7h13v34H0V28h21z\"/><!--Created by Garrett Knoll from the Noun Project--></svg>\n";
+  var fullscreenOut = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M66 7h13v21h21v13H66zM66 60.3h34v12.9H79v21H66zM0 60.3h34v34H21V73.1H0zM21 7h13v34H0V28h21z\"/><!--Created by Garrett Knoll from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Navigation bar fullscreen button class
@@ -2202,7 +2211,7 @@
   FullscreenButton.icon = fullscreenIn;
   FullscreenButton.iconActive = fullscreenOut;
 
-  var menuIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"10 10 80 80\"><circle r=\"10\" cx=\"20\" cy=\"20\"/><circle r=\"10\" cx=\"50\" cy=\"20\"/><circle r=\"10\" cx=\"80\" cy=\"20\"/><circle r=\"10\" cx=\"20\" cy=\"50\"/><circle r=\"10\" cx=\"50\" cy=\"50\"/><circle r=\"10\" cx=\"80\" cy=\"50\"/><circle r=\"10\" cx=\"20\" cy=\"80\"/><circle r=\"10\" cx=\"50\" cy=\"80\"/><circle r=\"10\" cx=\"80\" cy=\"80\"/><!-- Created by Richard Kunák from the Noun Project--></svg>\n";
+  var menuIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"10 10 80 80\"><circle r=\"10\" cx=\"20\" cy=\"20\"/><circle r=\"10\" cx=\"50\" cy=\"20\"/><circle r=\"10\" cx=\"80\" cy=\"20\"/><circle r=\"10\" cx=\"20\" cy=\"50\"/><circle r=\"10\" cx=\"50\" cy=\"50\"/><circle r=\"10\" cx=\"80\" cy=\"50\"/><circle r=\"10\" cx=\"20\" cy=\"80\"/><circle r=\"10\" cx=\"50\" cy=\"80\"/><circle r=\"10\" cx=\"80\" cy=\"80\"/><!-- Created by Richard Kunák from the Noun Project--></svg>\r\n";
 
   var HTML_BUTTON_DATA = 'data-' + dasherize(BUTTON_DATA);
   /**
@@ -2382,7 +2391,7 @@
       SYSTEM.isWebGLSupported = ctx != null;
       SYSTEM.isTouchEnabled = isTouchEnabled();
       SYSTEM.maxTextureWidth = getMaxTextureWidth(ctx);
-      SYSTEM.maxCanvasWidth = getMaxCanvasWidth(SYSTEM.maxTextureWidth);
+      SYSTEM.maxCanvasWidth = 4096;
       SYSTEM.mouseWheelEvent = getMouseWheelEvent();
       SYSTEM.fullscreenEvent = getFullscreenEvent();
     }
@@ -2453,38 +2462,6 @@
     } else {
       return 0;
     }
-  }
-  /**
-   * @summary Gets max canvas width supported by the browser.
-   * We only test powers of 2 and height = width / 2 because that's what we need to generate WebGL textures
-   * @param maxWidth
-   * @return {number}
-   * @private
-   */
-
-
-  function getMaxCanvasWidth(maxWidth) {
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    canvas.width = maxWidth;
-    canvas.height = maxWidth / 2;
-
-    while (canvas.width > 1024) {
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, 0, 1, 1);
-
-      try {
-        if (ctx.getImageData(0, 0, 1, 1).data[0] === 255) {
-          return canvas.width;
-        }
-      } catch (e) {// continue
-      }
-
-      canvas.width /= 2;
-      canvas.height /= 2;
-    }
-
-    return 0;
   }
   /**
    * @summary Gets the event name for mouse wheel
@@ -2562,7 +2539,7 @@
        * @property {PSV.Animation} longPressAnimation
        */
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         value: value,
         buttondown: false,
         longPressTimeout: null,
@@ -2717,7 +2694,7 @@
     return AbstractZoomButton;
   }(AbstractButton);
 
-  var zoomIn = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"><path d=\"M14.043 12.22a7.738 7.738 0 1 0-1.823 1.822l4.985 4.985c.503.504 1.32.504 1.822 0a1.285 1.285 0 0 0 0-1.822l-4.984-4.985zm-6.305 1.043a5.527 5.527 0 1 1 0-11.053 5.527 5.527 0 0 1 0 11.053z\"/><path d=\"M8.728 4.009H6.744v2.737H4.006V8.73h2.738v2.736h1.984V8.73h2.737V6.746H8.728z\"/><!--Created by Ryan Canning from the Noun Project--></svg>\n";
+  var zoomIn = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"><path d=\"M14.043 12.22a7.738 7.738 0 1 0-1.823 1.822l4.985 4.985c.503.504 1.32.504 1.822 0a1.285 1.285 0 0 0 0-1.822l-4.984-4.985zm-6.305 1.043a5.527 5.527 0 1 1 0-11.053 5.527 5.527 0 0 1 0 11.053z\"/><path d=\"M8.728 4.009H6.744v2.737H4.006V8.73h2.738v2.736h1.984V8.73h2.737V6.746H8.728z\"/><!--Created by Ryan Canning from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Navigation bar zoom-in button class
@@ -2740,7 +2717,7 @@
   ZoomInButton.id = 'zoomIn';
   ZoomInButton.icon = zoomIn;
 
-  var zoomOut = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"><path d=\"M14.043 12.22a7.738 7.738 0 1 0-1.823 1.822l4.985 4.985c.503.504 1.32.504 1.822 0a1.285 1.285 0 0 0 0-1.822l-4.984-4.985zm-6.305 1.043a5.527 5.527 0 1 1 0-11.053 5.527 5.527 0 0 1 0 11.053z\"/><path d=\"M4.006 6.746h7.459V8.73H4.006z\"/><!--Created by Ryan Canning from the Noun Project--></svg>\n";
+  var zoomOut = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\"><path d=\"M14.043 12.22a7.738 7.738 0 1 0-1.823 1.822l4.985 4.985c.503.504 1.32.504 1.822 0a1.285 1.285 0 0 0 0-1.822l-4.984-4.985zm-6.305 1.043a5.527 5.527 0 1 1 0-11.053 5.527 5.527 0 0 1 0 11.053z\"/><path d=\"M4.006 6.746h7.459V8.73H4.006z\"/><!--Created by Ryan Canning from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Navigation bar zoom-out button class
@@ -2785,7 +2762,7 @@
        * @property {number} mediaMinWidth
        */
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         mousedown: false,
         mediaMinWidth: 0
       });
@@ -3165,7 +3142,7 @@
       return bound(_maxFov, 1, 179);
     },
     lang: function lang(_lang) {
-      return _extends({}, DEFAULTS.lang, {}, _lang);
+      return _extends(_extends({}, DEFAULTS.lang), _lang);
     },
     keyboard: function keyboard(_keyboard) {
       // keyboard=true becomes the default map
@@ -3346,7 +3323,7 @@
        */
 
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         id: _this.constructor.id,
         collapsable: false,
         width: _this.button.prop.width,
@@ -3752,7 +3729,7 @@
        */
 
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         tickness: (_this.loader.offsetWidth - _this.loader.clientWidth) / 2 * SYSTEM.pixelRatio,
         current: null
       });
@@ -3849,7 +3826,7 @@
        * @property {*} timeout
        */
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         visible: false,
         timeout: null
       });
@@ -3961,7 +3938,7 @@
        * @property {boolean} dissmisable
        */
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         contentId: undefined,
         dissmisable: true
       });
@@ -4134,7 +4111,7 @@
        * @property {function} clickHandler
        */
 
-      _this.prop = _extends({}, _this.prop, {
+      _this.prop = _extends(_extends({}, _this.prop), {}, {
         visible: false,
         contentId: undefined,
         mouseX: 0,
@@ -4421,7 +4398,7 @@
     return Panel;
   }(AbstractComponent);
 
-  var errorIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"15 15 70 70\"><path d=\"M50,16.2c-18.6,0-33.8,15.1-33.8,33.8S31.4,83.7,50,83.7S83.8,68.6,83.8,50S68.6,16.2,50,16.2z M50,80.2c-16.7,0-30.2-13.6-30.2-30.2S33.3,19.7,50,19.7S80.3,33.3,80.3,50S66.7,80.2,50,80.2z\"/><rect x=\"48\" y=\"31.7\" width=\"4\" height=\"28\"/><rect x=\"48\" y=\"63.2\" width=\"4\" height=\"5\"/><!--Created by Shastry from the Noun Project--></svg>\n";
+  var errorIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"15 15 70 70\"><path d=\"M50,16.2c-18.6,0-33.8,15.1-33.8,33.8S31.4,83.7,50,83.7S83.8,68.6,83.8,50S68.6,16.2,50,16.2z M50,80.2c-16.7,0-30.2-13.6-30.2-30.2S33.3,19.7,50,19.7S80.3,33.3,80.3,50S66.7,80.2,50,80.2z\"/><rect x=\"48\" y=\"31.7\" width=\"4\" height=\"28\"/><rect x=\"48\" y=\"63.2\" width=\"4\" height=\"5\"/><!--Created by Shastry from the Noun Project--></svg>\r\n";
 
   /**
    * @namespace PSV.services
@@ -4687,7 +4664,7 @@
     return DataHelper;
   }(AbstractService);
 
-  var gestureIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M33.38 33.2a1.96 1.96 0 0 0 1.5-3.23 10.61 10.61 0 0 1 7.18-17.51c.7-.06 1.31-.49 1.61-1.12a13.02 13.02 0 0 1 11.74-7.43c7.14 0 12.96 5.8 12.96 12.9 0 3.07-1.1 6.05-3.1 8.38-.7.82-.61 2.05.21 2.76.83.7 2.07.6 2.78-.22a16.77 16.77 0 0 0 4.04-10.91C72.3 7.54 64.72 0 55.4 0a16.98 16.98 0 0 0-14.79 8.7 14.6 14.6 0 0 0-12.23 14.36c0 3.46 1.25 6.82 3.5 9.45.4.45.94.69 1.5.69m45.74 43.55a22.13 22.13 0 0 1-5.23 12.4c-4 4.55-9.53 6.86-16.42 6.86-12.6 0-20.1-10.8-20.17-10.91a1.82 1.82 0 0 0-.08-.1c-5.3-6.83-14.55-23.82-17.27-28.87-.05-.1 0-.21.02-.23a6.3 6.3 0 0 1 8.24 1.85l9.38 12.59a1.97 1.97 0 0 0 3.54-1.17V25.34a4 4 0 0 1 1.19-2.87 3.32 3.32 0 0 1 2.4-.95c1.88.05 3.4 1.82 3.4 3.94v24.32a1.96 1.96 0 0 0 3.93 0v-33.1a3.5 3.5 0 0 1 7 0v35.39a1.96 1.96 0 0 0 3.93 0v-.44c.05-2.05 1.6-3.7 3.49-3.7 1.93 0 3.5 1.7 3.5 3.82v5.63c0 .24.04.48.13.71l.1.26a1.97 1.97 0 0 0 3.76-.37c.33-1.78 1.77-3.07 3.43-3.07 1.9 0 3.45 1.67 3.5 3.74l-1.77 18.1zM77.39 51c-1.25 0-2.45.32-3.5.9v-.15c0-4.27-3.33-7.74-7.42-7.74-1.26 0-2.45.33-3.5.9V16.69a7.42 7.42 0 0 0-14.85 0v1.86a7 7 0 0 0-3.28-.94 7.21 7.21 0 0 0-5.26 2.07 7.92 7.92 0 0 0-2.38 5.67v37.9l-5.83-7.82a10.2 10.2 0 0 0-13.35-2.92 4.1 4.1 0 0 0-1.53 5.48C20 64.52 28.74 80.45 34.07 87.34c.72 1.04 9.02 12.59 23.4 12.59 7.96 0 14.66-2.84 19.38-8.2a26.06 26.06 0 0 0 6.18-14.6l1.78-18.2v-.2c0-4.26-3.32-7.73-7.42-7.73z\" fill=\"#000\" fill-rule=\"evenodd\"/><!--Created by AomAm from the Noun Project--></svg>\n";
+  var gestureIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M33.38 33.2a1.96 1.96 0 0 0 1.5-3.23 10.61 10.61 0 0 1 7.18-17.51c.7-.06 1.31-.49 1.61-1.12a13.02 13.02 0 0 1 11.74-7.43c7.14 0 12.96 5.8 12.96 12.9 0 3.07-1.1 6.05-3.1 8.38-.7.82-.61 2.05.21 2.76.83.7 2.07.6 2.78-.22a16.77 16.77 0 0 0 4.04-10.91C72.3 7.54 64.72 0 55.4 0a16.98 16.98 0 0 0-14.79 8.7 14.6 14.6 0 0 0-12.23 14.36c0 3.46 1.25 6.82 3.5 9.45.4.45.94.69 1.5.69m45.74 43.55a22.13 22.13 0 0 1-5.23 12.4c-4 4.55-9.53 6.86-16.42 6.86-12.6 0-20.1-10.8-20.17-10.91a1.82 1.82 0 0 0-.08-.1c-5.3-6.83-14.55-23.82-17.27-28.87-.05-.1 0-.21.02-.23a6.3 6.3 0 0 1 8.24 1.85l9.38 12.59a1.97 1.97 0 0 0 3.54-1.17V25.34a4 4 0 0 1 1.19-2.87 3.32 3.32 0 0 1 2.4-.95c1.88.05 3.4 1.82 3.4 3.94v24.32a1.96 1.96 0 0 0 3.93 0v-33.1a3.5 3.5 0 0 1 7 0v35.39a1.96 1.96 0 0 0 3.93 0v-.44c.05-2.05 1.6-3.7 3.49-3.7 1.93 0 3.5 1.7 3.5 3.82v5.63c0 .24.04.48.13.71l.1.26a1.97 1.97 0 0 0 3.76-.37c.33-1.78 1.77-3.07 3.43-3.07 1.9 0 3.45 1.67 3.5 3.74l-1.77 18.1zM77.39 51c-1.25 0-2.45.32-3.5.9v-.15c0-4.27-3.33-7.74-7.42-7.74-1.26 0-2.45.33-3.5.9V16.69a7.42 7.42 0 0 0-14.85 0v1.86a7 7 0 0 0-3.28-.94 7.21 7.21 0 0 0-5.26 2.07 7.92 7.92 0 0 0-2.38 5.67v37.9l-5.83-7.82a10.2 10.2 0 0 0-13.35-2.92 4.1 4.1 0 0 0-1.53 5.48C20 64.52 28.74 80.45 34.07 87.34c.72 1.04 9.02 12.59 23.4 12.59 7.96 0 14.66-2.84 19.38-8.2a26.06 26.06 0 0 0 6.18-14.6l1.78-18.2v-.2c0-4.26-3.32-7.73-7.42-7.73z\" fill=\"#000\" fill-rule=\"evenodd\"/><!--Created by AomAm from the Noun Project--></svg>\r\n";
 
   /**
    * @summary Events handler
@@ -4733,7 +4710,8 @@
         pinchDist: 0,
         dblclickData: null,
         dblclickTimeout: null,
-        longtouchTimeout: null
+        longtouchTimeout: null,
+        twofingersTimeout: null
       };
       /**
        * @summary Throttled wrapper of {@link PSV.Viewer#autoSize}
@@ -4795,6 +4773,7 @@
 
       clearTimeout(this.state.dblclickTimeout);
       clearTimeout(this.state.longtouchTimeout);
+      clearTimeout(this.state.twofingersTimeout);
       delete this.state;
 
       _AbstractService.prototype.destroy.call(this);
@@ -5094,11 +5073,13 @@
           this.__stopMoveZoom();
         } else if (evt.touches.length === 0) {
           this.__stopMove(evt.changedTouches[0]);
-
-          if (this.config.touchmoveTwoFingers) {
-            this.psv.overlay.hide(IDS.TWO_FINGERS);
-          }
         }
+      }
+
+      if (this.config.touchmoveTwoFingers) {
+        this.__cancelTwoFingersOverlay();
+
+        this.psv.overlay.hide(IDS.TWO_FINGERS);
       }
     }
     /**
@@ -5109,17 +5090,23 @@
     ;
 
     _proto.__onTouchMove = function __onTouchMove(evt) {
+      var _this3 = this;
+
       if (!this.config.mousemove) {
         return;
       }
 
       if (evt.touches.length === 1) {
         if (this.config.touchmoveTwoFingers) {
-          this.psv.overlay.show({
-            id: IDS.TWO_FINGERS,
-            image: gestureIcon,
-            text: this.config.lang.twoFingers[0]
-          });
+          if (!this.prop.twofingersTimeout) {
+            this.prop.twofingersTimeout = setTimeout(function () {
+              _this3.psv.overlay.show({
+                id: IDS.TWO_FINGERS,
+                image: gestureIcon,
+                text: _this3.config.lang.twoFingers[0]
+              });
+            }, TWOFINGERSOVERLAY_DELAY);
+          }
         } else {
           evt.preventDefault();
 
@@ -5129,6 +5116,10 @@
         evt.preventDefault();
 
         this.__moveZoom(evt);
+
+        if (this.config.touchmoveTwoFingers) {
+          this.__cancelTwoFingersOverlay();
+        }
       }
     }
     /**
@@ -5141,6 +5132,18 @@
       if (this.prop.longtouchTimeout) {
         clearTimeout(this.prop.longtouchTimeout);
         this.prop.longtouchTimeout = null;
+      }
+    }
+    /**
+     * @summary Cancel the two fingers overlay timer if any
+     * @private
+     */
+    ;
+
+    _proto.__cancelTwoFingersOverlay = function __cancelTwoFingersOverlay() {
+      if (this.prop.twofingersTimeout) {
+        clearTimeout(this.prop.twofingersTimeout);
+        this.prop.twofingersTimeout = null;
       }
     }
     /**
@@ -5192,19 +5195,19 @@
     ;
 
     _proto.__startMove = function __startMove(evt) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.psv.stopAutorotate();
       this.psv.stopAnimation().then(function () {
-        _this3.state.mouseX = evt.clientX;
-        _this3.state.mouseY = evt.clientY;
-        _this3.state.startMouseX = _this3.state.mouseX;
-        _this3.state.startMouseY = _this3.state.mouseY;
-        _this3.state.moving = true;
-        _this3.state.zooming = false;
-        _this3.state.mouseHistory.length = 0;
+        _this4.state.mouseX = evt.clientX;
+        _this4.state.mouseY = evt.clientY;
+        _this4.state.startMouseX = _this4.state.mouseX;
+        _this4.state.startMouseY = _this4.state.mouseY;
+        _this4.state.moving = true;
+        _this4.state.zooming = false;
+        _this4.state.mouseHistory.length = 0;
 
-        _this3.__logMouseMove(evt);
+        _this4.__logMouseMove(evt);
       });
     }
     /**
@@ -5283,7 +5286,7 @@
     ;
 
     _proto.__stopMoveInertia = function __stopMoveInertia(evt) {
-      var _this4 = this;
+      var _this5 = this;
 
       var direction = {
         x: evt.clientX - this.state.mouseHistory[0][1],
@@ -5304,10 +5307,10 @@
         duration: norm * INERTIA_WINDOW / 100,
         easing: 'outCirc',
         onTick: function onTick(properties) {
-          _this4.__move(properties, false);
+          _this5.__move(properties, false);
         }
       }).finally(function () {
-        _this4.state.moving = false;
+        _this5.state.moving = false;
       });
     }
     /**
@@ -5321,7 +5324,7 @@
     ;
 
     _proto.__click = function __click(evt, longtouch) {
-      var _this5 = this;
+      var _this6 = this;
 
       if (longtouch === void 0) {
         longtouch = false;
@@ -5360,8 +5363,8 @@
           this.psv.trigger(EVENTS.CLICK, data);
           this.state.dblclickData = clone(data);
           this.state.dblclickTimeout = setTimeout(function () {
-            _this5.state.dblclickTimeout = null;
-            _this5.state.dblclickData = null;
+            _this6.state.dblclickTimeout = null;
+            _this6.state.dblclickData = null;
           }, DBLCLICK_DELAY);
         } else {
           if (Math.abs(this.state.dblclickData.clientX - data.clientX) < MOVE_THRESHOLD && Math.abs(this.state.dblclickData.clientY - data.clientY) < MOVE_THRESHOLD) {
@@ -6405,7 +6408,7 @@
        * @property {*} data
        */
 
-      _this.prop = _extends({}, _this.prop, {}, size, {
+      _this.prop = _extends(_extends(_extends({}, _this.prop), size), {}, {
         state: STATE.NONE,
         width: 0,
         height: 0,

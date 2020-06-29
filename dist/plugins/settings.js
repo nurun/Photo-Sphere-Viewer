@@ -24,11 +24,11 @@
     return self;
   }
 
-  var check = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 90 90\"><polygon fill=\"currentColor\"  points=\"0,48 10,35 36,57 78,10 90,21 37,79 \"/><!-- Created by Zahroe from the Noun Project --></svg>\n";
+  var check = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 90 90\"><polygon fill=\"currentColor\"  points=\"0,48 10,35 36,57 78,10 90,21 37,79 \"/><!-- Created by Zahroe from the Noun Project --></svg>\r\n";
 
-  var chevron = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path fill=\"currentColor\" d=\"M86.2 50.7l-44 44-9.9-9.9 34.1-34.1-34.7-34.8L41.6 6z\"/><!-- Created by Renee Ramsey-Passmore from the Noun Project--></svg>\n";
+  var chevron = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path fill=\"currentColor\" d=\"M86.2 50.7l-44 44-9.9-9.9 34.1-34.1-34.7-34.8L41.6 6z\"/><!-- Created by Renee Ramsey-Passmore from the Noun Project--></svg>\r\n";
 
-  var icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path fill=\"currentColor\" d=\"M98.4 43.7c-.8-.5-7-4.3-9.6-5.4l-3-7.5c.9-2.5 2.6-9.4 3-10.6a3.3 3.3 0 00-1-3.1L83 12.2a3.3 3.3 0 00-3-.9c-1 .2-8 2-10.7 3l-7.5-3.1c-1-2.4-4.8-8.6-5.4-9.6A3.3 3.3 0 0053.4 0h-6.8a3.4 3.4 0 00-2.9 1.6c-.5.8-4.2 7-5.4 9.6l-7.5 3-10.6-3a3.3 3.3 0 00-3.1 1L12.2 17a3.3 3.3 0 00-.9 3c.2 1 2 8 3 10.7l-3.1 7.5c-2.4 1-8.6 4.8-9.6 5.4A3.3 3.3 0 000 46.6v6.8a3.4 3.4 0 001.6 2.9c.8.5 7 4.2 9.6 5.4l3 7.5-3 10.6a3.3 3.3 0 001 3.1l4.8 4.9a3.3 3.3 0 003.1.9c1-.2 8-2 10.7-3l7.5 3c1 2.5 4.7 8.6 5.4 9.7a3.3 3.3 0 002.9 1.6h6.8a3.4 3.4 0 002.9-1.6c.5-.8 4.2-7 5.4-9.6l7.5-3c2.5.9 9.4 2.6 10.6 3a3.3 3.3 0 003.1-1l4.9-4.8a3.3 3.3 0 00.9-3.1c-.2-1-2-8-3-10.7l3-7.5c2.5-1 8.6-4.7 9.7-5.4a3.3 3.3 0 001.6-2.9v-6.8a3.3 3.3 0 00-1.6-2.9zM50 71.7A21.8 21.8 0 1171.8 50 21.8 21.8 0 0150 71.8z\"/><!-- Created by i cons from the Noun Project --></svg>\n";
+  var icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path fill=\"currentColor\" d=\"M98.4 43.7c-.8-.5-7-4.3-9.6-5.4l-3-7.5c.9-2.5 2.6-9.4 3-10.6a3.3 3.3 0 00-1-3.1L83 12.2a3.3 3.3 0 00-3-.9c-1 .2-8 2-10.7 3l-7.5-3.1c-1-2.4-4.8-8.6-5.4-9.6A3.3 3.3 0 0053.4 0h-6.8a3.4 3.4 0 00-2.9 1.6c-.5.8-4.2 7-5.4 9.6l-7.5 3-10.6-3a3.3 3.3 0 00-3.1 1L12.2 17a3.3 3.3 0 00-.9 3c.2 1 2 8 3 10.7l-3.1 7.5c-2.4 1-8.6 4.8-9.6 5.4A3.3 3.3 0 000 46.6v6.8a3.4 3.4 0 001.6 2.9c.8.5 7 4.2 9.6 5.4l3 7.5-3 10.6a3.3 3.3 0 001 3.1l4.8 4.9a3.3 3.3 0 003.1.9c1-.2 8-2 10.7-3l7.5 3c1 2.5 4.7 8.6 5.4 9.7a3.3 3.3 0 002.9 1.6h6.8a3.4 3.4 0 002.9-1.6c.5-.8 4.2-7 5.4-9.6l7.5-3c2.5.9 9.4 2.6 10.6 3a3.3 3.3 0 003.1-1l4.9-4.8a3.3 3.3 0 00.9-3.1c-.2-1-2-8-3-10.7l3-7.5c2.5-1 8.6-4.7 9.7-5.4a3.3 3.3 0 001.6-2.9v-6.8a3.3 3.3 0 00-1.6-2.9zM50 71.7A21.8 21.8 0 1171.8 50 21.8 21.8 0 0150 71.8z\"/><!-- Created by i cons from the Noun Project --></svg>\r\n";
 
   /**
    * @summary Navigation bar settings button class
@@ -122,9 +122,9 @@
   SettingsButton.id = 'settings';
   SettingsButton.icon = icon;
 
-  var switchOff = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\" width=\"2.4em\" height=\"1.2em\"><path fill=\"currentColor\" transform=\"scale(1.88) translate(0, -25)\" d=\"M72 73.2H44A26.4 26.4 0 0044 30h28a21.6 21.6 0 010 43.2M7.2 51.6a21.6 21.6 0 1143.2 0 21.6 21.6 0 01-43.2 0M72 25.2H28.8a26.4 26.4 0 000 52.8H72a26.4 26.4 0 000-52.8\"/><!-- Created by Nikita from the Noun Project --></svg>\n";
+  var switchOff = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\" width=\"2.4em\" height=\"1.2em\"><path fill=\"currentColor\" transform=\"scale(1.88) translate(0, -25)\" d=\"M72 73.2H44A26.4 26.4 0 0044 30h28a21.6 21.6 0 010 43.2M7.2 51.6a21.6 21.6 0 1143.2 0 21.6 21.6 0 01-43.2 0M72 25.2H28.8a26.4 26.4 0 000 52.8H72a26.4 26.4 0 000-52.8\"/><!-- Created by Nikita from the Noun Project --></svg>\r\n";
 
-  var switchOn = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\" width=\"2.4em\" height=\"1.2em\"><path fill=\"currentColor\" transform=\"scale(1.88) translate(0, -25)\" d=\"M72 73.2A21.6 21.6 0 1172 30a21.6 21.6 0 010 43.2M2.4 51.6A26.4 26.4 0 0028.8 78H72a26.4 26.4 0 000-52.8H28.8A26.4 26.4 0 002.4 51.6\"/><!-- Created by Nikita from the Noun Project --></svg>\n";
+  var switchOn = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 100\" width=\"2.4em\" height=\"1.2em\"><path fill=\"currentColor\" transform=\"scale(1.88) translate(0, -25)\" d=\"M72 73.2A21.6 21.6 0 1172 30a21.6 21.6 0 010 43.2M2.4 51.6A26.4 26.4 0 0028.8 78H72a26.4 26.4 0 000-52.8H28.8A26.4 26.4 0 002.4 51.6\"/><!-- Created by Nikita from the Noun Project --></svg>\r\n";
 
   photoSphereViewer.DEFAULTS.navbar.splice(photoSphereViewer.DEFAULTS.navbar.indexOf('fullscreen'), 0, SettingsButton.id);
   photoSphereViewer.DEFAULTS.lang[SettingsButton.id] = 'Settings';

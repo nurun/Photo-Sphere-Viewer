@@ -107,9 +107,9 @@
        * @private
        */
 
-      _this.config = _extends({
+      _this.config = _extends(_extends({
         startFromClosest: true
-      }, options, {
+      }, options), {}, {
         keypoints: null
       });
       /**
