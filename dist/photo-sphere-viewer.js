@@ -5066,14 +5066,12 @@
         return;
       }
 
-      if (this.prop.longtouchTimeout) {
-        this.__cancelLongTouch();
+      this.__cancelLongTouch();
 
-        if (evt.touches.length === 1) {
-          this.__stopMoveZoom();
-        } else if (evt.touches.length === 0) {
-          this.__stopMove(evt.changedTouches[0]);
-        }
+      if (evt.touches.length === 1) {
+        this.__stopMoveZoom();
+      } else if (evt.touches.length === 0) {
+        this.__stopMove(evt.changedTouches[0]);
       }
 
       if (this.config.touchmoveTwoFingers) {
@@ -5422,7 +5420,7 @@
       }
     }
     /**
-     * @summary Perfoms combines move and zoom
+     * @summary Perfoms combined move and zoom
      * @param {TouchEvent} evt
      * @private
      */

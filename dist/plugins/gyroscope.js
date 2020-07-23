@@ -10,8 +10,6 @@
   (global = global || self, (global.PhotoSphereViewer = global.PhotoSphereViewer || {}, global.PhotoSphereViewer.GyroscopePlugin = factory(global.PhotoSphereViewer, global.THREE)));
 }(this, (function (photoSphereViewer, THREE) { 'use strict';
 
-  var THREE__default = 'default' in THREE ? THREE['default'] : THREE;
-
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
     subClass.prototype.constructor = subClass;
@@ -26,7 +24,6 @@
     return self;
   }
 
-  console.warn("THREE.DeviceOrientationControls: As part of the transition to ES6 Modules, the files in 'examples/js' were deprecated in May 2020 (r117) and will be deleted in December 2020 (r124). You can find more information about developing using ES6 Modules in https://threejs.org/docs/index.html#manual/en/introduction/Import-via-modules.");
   /**
    * @author richt / http://richt.me
    * @author WestLangley / http://github.com/WestLangley
@@ -34,7 +31,7 @@
    * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
    */
 
-  THREE__default.DeviceOrientationControls = function (object) {
+  var DeviceOrientationControls = function DeviceOrientationControls(object) {
     var scope = this;
     this.object = object;
     this.object.rotation.reorder('YXZ');
@@ -53,10 +50,10 @@
 
 
     var setObjectQuaternion = function () {
-      var zee = new THREE__default.Vector3(0, 0, 1);
-      var euler = new THREE__default.Euler();
-      var q0 = new THREE__default.Quaternion();
-      var q1 = new THREE__default.Quaternion(-Math.sqrt(0.5), 0, 0, Math.sqrt(0.5)); // - PI/2 around the x-axis
+      var zee = new THREE.Vector3(0, 0, 1);
+      var euler = new THREE.Euler();
+      var q0 = new THREE.Quaternion();
+      var q1 = new THREE.Quaternion(-Math.sqrt(0.5), 0, 0, Math.sqrt(0.5)); // - PI/2 around the x-axis
 
       return function (quaternion, alpha, beta, gamma, orient) {
         euler.set(beta, alpha, -gamma, 'YXZ'); // 'ZXY' for the device, but 'YXZ' for us
@@ -101,13 +98,13 @@
       var device = scope.deviceOrientation;
 
       if (device) {
-        var alpha = device.alpha ? THREE__default.MathUtils.degToRad(device.alpha) + scope.alphaOffset : 0; // Z
+        var alpha = device.alpha ? THREE.MathUtils.degToRad(device.alpha) + scope.alphaOffset : 0; // Z
 
-        var beta = device.beta ? THREE__default.MathUtils.degToRad(device.beta) : 0; // X'
+        var beta = device.beta ? THREE.MathUtils.degToRad(device.beta) : 0; // X'
 
-        var gamma = device.gamma ? THREE__default.MathUtils.degToRad(device.gamma) : 0; // Y''
+        var gamma = device.gamma ? THREE.MathUtils.degToRad(device.gamma) : 0; // Y''
 
-        var orient = scope.screenOrientation ? THREE__default.MathUtils.degToRad(scope.screenOrientation) : 0; // O
+        var orient = scope.screenOrientation ? THREE.MathUtils.degToRad(scope.screenOrientation) : 0; // O
 
         setObjectQuaternion(scope.object.quaternion, alpha, beta, gamma, orient);
       }
@@ -208,7 +205,7 @@
 
   /**
    * @typedef {Object} external:THREE.DeviceOrientationControls
-   * @summary {@link https://github.com/mrdoob/three.js/blob/dev/examples/js/controls/DeviceOrientationControls.js}
+   * @summary {@link https://github.com/mrdoob/three.js/blob/dev/examples/jsm/controls/DeviceOrientationControls.js}
    */
   // add gyroscope button
 
@@ -380,7 +377,7 @@
       }
     }
     /**
-     * @summary Attaches the {@link DeviceOrientationControls} to the camera
+     * @summary Attaches the {@link extenral:THREE.DeviceOrientationControls} to the camera
      * @private
      */
     ;
@@ -389,7 +386,7 @@
       var _this3 = this;
 
       if (!this.controls) {
-        this.controls = new THREE.DeviceOrientationControls(this.psv.renderer.camera);
+        this.controls = new DeviceOrientationControls(this.psv.renderer.camera);
       } else {
         this.controls.connect();
       }

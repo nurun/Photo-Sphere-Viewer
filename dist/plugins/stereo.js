@@ -8,10 +8,9 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('photo-sphere-viewer'), require('photo-sphere-viewer/dist/plugins/gyroscope'), require('three')) :
   typeof define === 'function' && define.amd ? define(['photo-sphere-viewer', 'photo-sphere-viewer/dist/plugins/gyroscope', 'three'], factory) :
   (global = global || self, (global.PhotoSphereViewer = global.PhotoSphereViewer || {}, global.PhotoSphereViewer.StereoPlugin = factory(global.PhotoSphereViewer, global.PhotoSphereViewer.GyroscopePlugin, global.THREE)));
-}(this, (function (photoSphereViewer, GyroscopePlugin, THREE) { 'use strict';
+}(this, (function (photoSphereViewer, GyroscopePlugin, three) { 'use strict';
 
   GyroscopePlugin = GyroscopePlugin && Object.prototype.hasOwnProperty.call(GyroscopePlugin, 'default') ? GyroscopePlugin['default'] : GyroscopePlugin;
-  var THREE__default = 'default' in THREE ? THREE['default'] : THREE;
 
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
@@ -27,7 +26,6 @@
     return self;
   }
 
-  console.warn("THREE.StereoEffect: As part of the transition to ES6 Modules, the files in 'examples/js' were deprecated in May 2020 (r117) and will be deleted in December 2020 (r124). You can find more information about developing using ES6 Modules in https://threejs.org/docs/index.html#manual/en/introduction/Import-via-modules.");
   /**
    * @author alteredq / http://alteredqualia.com/
    * @authod mrdoob / http://mrdoob.com/
@@ -35,11 +33,11 @@
    * @authod fonserbc / http://fonserbc.github.io/
   */
 
-  THREE__default.StereoEffect = function (renderer) {
-    var _stereo = new THREE__default.StereoCamera();
+  var StereoEffect = function StereoEffect(renderer) {
+    var _stereo = new three.StereoCamera();
 
     _stereo.aspect = 0.5;
-    var size = new THREE__default.Vector2();
+    var size = new three.Vector2();
 
     this.setEyeSeparation = function (eyeSep) {
       _stereo.eyeSep = eyeSep;
@@ -158,7 +156,7 @@
 
   /**
    * @typedef {Object} external:THREE.StereoEffect
-   * @summary {@link https://github.com/mrdoob/three.js/blob/dev/examples/js/effects/StereoEffect.js}
+   * @summary {@link https://github.com/mrdoob/three.js/blob/dev/examples/jsm/effects/StereoEffect.js}
    */
 
   /**
@@ -303,7 +301,7 @@
       return this.gyroscope.start().then(function () {
         // switch renderer
         _this2.prop.renderer = _this2.psv.renderer.renderer;
-        _this2.psv.renderer.renderer = new THREE.StereoEffect(_this2.psv.renderer.renderer);
+        _this2.psv.renderer.renderer = new StereoEffect(_this2.psv.renderer.renderer);
 
         _this2.psv.needsUpdate();
 
