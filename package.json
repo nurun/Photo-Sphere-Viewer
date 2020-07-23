@@ -53,7 +53,7 @@
     "babel-eslint": "^10.0.3",
     "cpx": "^1.5.0",
     "date-fns": "^2.9.0",
-    "eslint": "7.3.1",
+    "eslint": "7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2",
     "jsdoc": "^3.6.3",
@@ -81,7 +81,7 @@
   },
   "scripts": {
     "compile": "npm-run-all compile:*",
-    "compile:prepare": "cpx \"node_modules/three/examples/js/**/*\" three-examples/",
+    "compile:prepare": "cpx \"node_modules/three/examples/jsm/**/*\" three-examples/",
     "compile:rollup": "rollup --config rollup.config.js",
     "doc": "npm-run-all doc:*",
     "doc:clean": "rm -rf public/*",
