@@ -2391,7 +2391,7 @@
       SYSTEM.isWebGLSupported = ctx != null;
       SYSTEM.isTouchEnabled = isTouchEnabled();
       SYSTEM.maxTextureWidth = getMaxTextureWidth(ctx);
-      SYSTEM.maxCanvasWidth = 4096;
+      SYSTEM.maxCanvasWidth = getMaxCanvasWidth(SYSTEM.maxTextureWidth);
       SYSTEM.mouseWheelEvent = getMouseWheelEvent();
       SYSTEM.fullscreenEvent = getFullscreenEvent();
     }
@@ -2462,6 +2462,37 @@
     } else {
       return 0;
     }
+  }
+  /**
+   * @summary Gets max canvas width supported by the browser.
+   * We only test powers of 2 and height = width / 2 because that's what we need to generate WebGL textures
+   * @param maxWidth
+   * @return {number}
+   * @private
+   */
+
+
+  function getMaxCanvasWidth(maxWidth) {
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = maxWidth;
+    canvas.height = 1;
+
+    while (canvas.width > 1024) {
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, 1, 1);
+
+      try {
+        if (ctx.getImageData(0, 0, 1, 1).data[0] === 255) {
+          return canvas.width;
+        }
+      } catch (e) {// continue
+      }
+
+      canvas.width /= 2;
+    }
+
+    return 0;
   }
   /**
    * @summary Gets the event name for mouse wheel

@@ -195,6 +195,48 @@
  * @copyright 2015-2020 Damien "Mistic" Sorel
  * @licence MIT (https://opensource.org/licenses/MIT)
  */
+.psv-notification {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  padding: 0 2em;
+  opacity: 0;
+  -webkit-transition-property: opacity, bottom;
+  transition-property: opacity, bottom;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+}
+
+.psv-notification-content {
+  max-width: 50em;
+  background-color: rgba(61, 61, 61, 0.8);
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  font: 14px sans-serif;
+  color: white;
+}
+
+.psv-notification--visible {
+  opacity: 100;
+  bottom: 80px;
+}
+/*!
+ * Photo Sphere Viewer 4.0.5
+ * @copyright 2014-2015 Jérémy Heleine
+ * @copyright 2015-2020 Damien "Mistic" Sorel
+ * @licence MIT (https://opensource.org/licenses/MIT)
+ */
 .psv-loader-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -244,48 +286,6 @@
 
 .psv-loader-text {
   font: 14px sans-serif;
-}
-/*!
- * Photo Sphere Viewer 4.0.5
- * @copyright 2014-2015 Jérémy Heleine
- * @copyright 2015-2020 Damien "Mistic" Sorel
- * @licence MIT (https://opensource.org/licenses/MIT)
- */
-.psv-notification {
-  position: absolute;
-  z-index: 100;
-  bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  padding: 0 2em;
-  opacity: 0;
-  -webkit-transition-property: opacity, bottom;
-  transition-property: opacity, bottom;
-  -webkit-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
-  -webkit-transition-duration: 200ms;
-          transition-duration: 200ms;
-}
-
-.psv-notification-content {
-  max-width: 50em;
-  background-color: rgba(61, 61, 61, 0.8);
-  border-radius: 4px;
-  padding: 0.5em 1em;
-  font: 14px sans-serif;
-  color: white;
-}
-
-.psv-notification--visible {
-  opacity: 100;
-  bottom: 80px;
 }
 /*!
  * Photo Sphere Viewer 4.0.5
