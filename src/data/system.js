@@ -35,7 +35,7 @@ SYSTEM.load = () => {
     SYSTEM.isWebGLSupported = ctx != null;
     SYSTEM.isTouchEnabled = isTouchEnabled();
     SYSTEM.maxTextureWidth = getMaxTextureWidth(ctx);
-    SYSTEM.maxCanvasWidth = getMaxCanvasWidth(SYSTEM.maxTextureWidth);
+    SYSTEM.maxCanvasWidth = 4096; // getMaxCanvasWidth(SYSTEM.maxTextureWidth);
     SYSTEM.mouseWheelEvent = getMouseWheelEvent();
     SYSTEM.fullscreenEvent = getFullscreenEvent();
   }
@@ -121,7 +121,7 @@ function getMaxCanvasWidth(maxWidth) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = maxWidth;
-  canvas.height = 1;
+  canvas.height = maxWidth / 2;
 
   while (canvas.width > 1024) {
     ctx.fillStyle = 'white';
@@ -137,6 +137,7 @@ function getMaxCanvasWidth(maxWidth) {
     }
 
     canvas.width /= 2;
+    canvas.height /= 2;
   }
 
   return 0;
